@@ -13,10 +13,17 @@
             font-size: 18px;
             margin-bottom: 5px;
         }
+        .flex-container {
+
+            align-items: center;     /* 垂直居中 */
+            display: flex;
+            align-items: center;
+            gap: 10px; /* 控制label和input之间的间距 */
+            }
         .input-field {
-            width: 100%;
+            flex: 0.8;
             height: 80px;
-            max-width: 400px; 
+            
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ddd;
@@ -32,6 +39,137 @@
             box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* 聚焦时的阴影效果 */
         }
 
+        /* 美化textarea */
+
+.styled-textarea {
+  width: 80%;
+  max-width: 800px;      /* 限制最大宽度 */
+  height: 100px;         /* 设置默认高度 */
+  padding: 15px;         /* 增加内边距 */
+  font-size: 16px;       /* 字体大小 */
+  line-height: 1.5;      /* 行高 */
+  border: 1px solid #ccc;/* 边框颜色 */
+  border-radius: 8px;    /* 圆角 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  resize: both;  /* 允许调整大小 */
+  box-sizing: border-box;/* 使padding不会影响整体宽度 */
+  transition: border-color 0.3s, box-shadow 0.3s; /* 过渡效果 */
+}
+
+.styled-textarea:focus {
+  border-color: #007bff;      /* 聚焦时的边框颜色 */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* 聚焦时的阴影效果 */
+  outline: none;              /* 移除默认的聚焦外框 */
+}
+
+/* 响应式textarea */
+.responsive-textarea {
+  width: 80%;               /* 占满父容器宽度 */
+  max-width: 100%;           /* 限制最大宽度 */
+  min-width: 300px;          /* 设置最小宽度，避免在小屏幕上过窄 */
+  height: 150px;
+  padding: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  resize: vertical;          /* 允许用户垂直调整 */
+  box-sizing: border-box;    /* 内边距不会影响整体宽度 */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.responsive-textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+
+
+/* 提交按钮样式 */
+.submit-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 表单容器 */
+.styled-form {
+  max-width: 500px;
+  margin: 0 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(252, 252, 252, 0.1);
+  display: flex;  /* 使用 flexbox 来管理内容布局 */
+  flex-direction: column;  /* 垂直排列 */
+  align-items: flex-start;  /* 左对齐 */
+  
+}
+
+/* 表格样式 */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.styled-table th, .styled-table td {
+  padding: 3px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid #ffffff;
+}
+
+.styled-table th {
+  background-color: #575b5f;
+  color: #fcfcfc;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.styled-table td {
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+/* 输入框样式 */
+.styled-input, .styled-textarea {
+  width: 100%;
+  padding: 2px;
+  font-size: 16px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.styled-input:focus, .styled-textarea:focus {
+  border-color: #e0ecf8;
+  box-shadow: 0 0 5px rgba(254, 254, 255, 0.3);
+  outline: none;
+}
+
       </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,12 +178,149 @@
 <body>
     <h1>质量调查报告</h1>
 
-    <div >
-    <label for="inputField" class="label-title">事件描述</label>
-    <input type="text" id="inputField" class="input-field"
+    
+    <label for="inputField" class="label-title">一、事件描述</label>
 
+    <div class="flex-container">
+    <input type="text" id="inputField" class="input-field"
      placeholder="真实描述被调查事件背景或事件概述。
      (xx 年 x 月 x 日，xx执管 xx/xx（xx）飞机，发生 xx 事件，造成 xx后果。)" 
-     
      >
+
     </div>
+
+<br></br>
+
+<div>   
+    <form action="/submit" method="POST">
+    <label for="message" class = "label-title">二、部件信息</label>
+    
+    <textarea id="b2p1" name="b2p1" class="responsive-textarea"
+     placeholder="（一）故障部件信息
+    名称：xx，件号：xx，序号：xx"
+     
+     ></textarea>
+    
+<p></p>
+   
+
+        <textarea id="b2p2" name="b2p2" class="responsive-textarea"
+         placeholder="（二）部件送修信息
+         xx修后使用时间为 175 小时，为短小时件。各部件修理报告齐全..."
+         
+         ></textarea>
+        
+<p></p>
+        
+<p></p>
+    
+    <textarea id="b2p3" name="b2p3" class="responsive-textarea"
+     placeholder="（三）系统/部件原理简介 
+     气象雷达由收发机(1SQ1)、控制盒(3SQ)、天线(11SQ)、天线驱动机构(7SQ)、波导管以及显示器组成。通过目标对电磁波的反射来确定目 标的距离、方位和特性。"
+     ></textarea>
+
+     <p></p>
+
+    </form>
+
+    <br></br>
+<p> 当前没有数据库，请勿提交和上传文件，感谢</p>    
+<div >
+    <form action="/submit" method="POST" enctype="multipart/form-data" class="styled-form">
+        <table class="styled-table">
+          <tr>
+            <th>姓名</th>
+            <td><input type="text" name="name" placeholder="请输入您的姓名" required class="styled-input"></td>
+          </tr>
+          <tr>
+            <th>单位</th>
+            <td><input type="email" name="email" placeholder="请输入您的单位" required class="styled-input"></td>
+          </tr>
+
+          <tr>
+            <th>上传图片或文件</th>
+            <td><input type="file" name="image" accept="image/*" required class="styled-input"></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" class="submit-button">
+            </td>
+          </tr>
+        </table>
+      </form>
+</div>
+
+
+
+
+<p> 事件原因，以下结构格式简化，TAT，模块仅供参考。</p>
+
+<br></br>
+
+
+
+
+
+
+<div >
+    <form id="surveyForm">
+        <textarea id="b2p2" name="b2p2" class="styled-textarea"
+         placeholder="
+         三、相关维修方案和相关厂家改装情况
+         MRS 工卡号 EO号 相关工作内容 涉及部件 执行时间？
+         相关厂家改装方案
+         
+         四、事件调查
+         4.1 机队可靠性数据
+         4.1.1 机队可靠性数据
+         4.1.2 部件可靠性数据
+         4.2 排故情况调查
+         之前 航前 短停 航后
+         4.3 技术文件（EO和工卡）调查
+         厂家有无相关技术文件 南航相关维护提示和质量提示 资料与适航性资料的符合性 施工步骤可操作性
+         4.4 维修要求执行情况调查
+         以往必检修理偏差 工作维修偏差 人员按卡施工 人员资质情况 工具设备符合性
+         4.5
+         执行 管理 系统
+         
+         五、调查结论
+         六、改进措施"
+    
+         ></textarea>
+    </form>
+</div>
+
+
+
+
+
+
+    <script>
+        function submitData() {
+            const data = {
+                name: document.getElementById("name").value,
+                age: document.getElementById("age").value,
+                email: document.getElementById("email").value,
+                feedback: document.getElementById("feedback").value
+            };
+
+            // 使用 fetch 提交数据到 Python 服务器
+            fetch("http://localhost:5000/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("数据提交成功！");
+                } else {
+                    alert("数据提交失败，请稍后重试。");
+                }
+            })
+            .catch(error => console.error("错误:", error));
+        }
+    </script>
+</body>
+</html>
