@@ -1,54 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+
+    <style>
+        h1 {
+          text-align: center;
+          font-size :40px;
+          color:red
+        }
+        .label-title {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .input-field {
+            width: 100%;
+            height: 80px;
+            max-width: 400px; 
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;  /* 鼠标悬停的过渡效果 */
+            outline: none;              /* 移除点击后的外框 */
+            text-overflow: ellipsis;
+
+        }
+        .input-field:focus {
+            border-color: #007bff;      /* 点击时的边框颜色 */
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* 聚焦时的阴影效果 */
+        }
+
+      </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>问卷调查</title>
 </head>
 <body>
-    <h2>问卷调查</h2>
-    <form id="surveyForm">
-        <label for="name">姓名:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <h1>质量调查报告</h1>
 
-        <label for="age">年龄:</label>
-        <input type="number" id="age" name="age" required><br><br>
+    <div >
+    <label for="inputField" class="label-title">事件描述</label>
+    <input type="text" id="inputField" class="input-field"
 
-        <label for="email">邮箱:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="feedback">反馈意见:</label><br>
-        <textarea id="feedback" name="feedback" rows="4" cols="50" required></textarea><br><br>
-
-        <button type="button" onclick="submitData()">提交</button>
-    </form>
-
-    <script>
-        function submitData() {
-            const data = {
-                name: document.getElementById("name").value,
-                age: document.getElementById("age").value,
-                email: document.getElementById("email").value,
-                feedback: document.getElementById("feedback").value
-            };
-
-            // 使用 fetch 提交数据到 Python 服务器
-            fetch("http://localhost:5000/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert("数据提交成功！");
-                } else {
-                    alert("数据提交失败，请稍后重试。");
-                }
-            })
-            .catch(error => console.error("错误:", error));
-        }
-    </script>
-</body>
-</html>
+     placeholder="真实描述被调查事件背景或事件概述。
+     (xx 年 x 月 x 日，xx执管 xx/xx（xx）飞机，发生 xx 事件，造成 xx后果。)" 
+     
+     >
+    </div>
